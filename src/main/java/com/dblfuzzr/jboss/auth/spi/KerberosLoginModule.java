@@ -68,6 +68,22 @@ public class KerberosLoginModule extends CommonLoginModule {
                     log.warn("Failed to create custom unauthenticatedIdentity", e);
                 }
             }
+
+            String kdc = (String) options.get("kdc");
+            if ( kdc != null )
+            {
+                log.trace("Setting KDC to ="+kdc);
+                System.setProperty("java.security.krb5.kdc", kdc);
+            }
+
+            String realm = (String) options.get("realm");
+            if ( realm != null )
+            {
+                log.trace("Setting Kerberos Realm to ="+realm);
+                System.setProperty("java.security.krb5.kdc", realm);
+                System.setProperty("java.security.krb5.realm", realm);
+            }
+
         }
 
         @Override

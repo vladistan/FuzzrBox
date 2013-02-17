@@ -54,10 +54,6 @@ public class FuzzrBoxAuthZTest {
         subject = new Subject();
         authzM = SecurityFactory.getAuthorizationManager(securityDomainName);
 
-        //TODO: This must be set by KRB config
-        System.setProperty("java.security.krb5.realm", (String) testVals.get("domain"));
-        System.setProperty("java.security.krb5.kdc", (String) testVals.get("kdc"));
-
     }
 
     @Test

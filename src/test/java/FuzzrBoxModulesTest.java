@@ -43,8 +43,6 @@ public class FuzzrBoxModulesTest {
         testVals.load(is);
 
 
-        System.setProperty("java.security.krb5.realm", (String) testVals.get("domain"));
-        System.setProperty("java.security.krb5.kdc", (String) testVals.get("kdc"));
 
     }
 
@@ -98,6 +96,8 @@ public class FuzzrBoxModulesTest {
             HashMap<String, String> nKrbOptions = new HashMap<String, String>();
 
             nKrbOptions.put("password-stacking","useFirstPass");
+            nKrbOptions.put("realm",testVals.getProperty("domain"));
+            nKrbOptions.put("kdc"  ,testVals.getProperty("kdc"));
 
             AppConfigurationEntry nkrbModule = new AppConfigurationEntry(newKrbModuleName,
                     AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, nKrbOptions);
@@ -115,6 +115,8 @@ public class FuzzrBoxModulesTest {
             Map<String, String> innerKrbOpts = new HashMap<String, String>();
 
             innerKrbOpts.put("password-stacking", "useFirstPass");
+            innerKrbOpts.put("realm",testVals.getProperty("domain"));
+            innerKrbOpts.put("kdc"  ,testVals.getProperty("kdc"));
 
             AppConfigurationEntry krbEntry = new AppConfigurationEntry(innerKrbModule,
                     AppConfigurationEntry.LoginModuleControlFlag.REQUIRED, innerKrbOpts);
