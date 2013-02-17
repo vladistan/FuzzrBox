@@ -4,12 +4,14 @@ import org.jboss.security.authorization.AuthorizationContext;
 import org.jboss.security.authorization.AuthorizationException;
 import org.jboss.security.authorization.Resource;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.picketbox.config.PicketBoxConfiguration;
 import org.picketbox.factories.SecurityFactory;
 
 import javax.security.auth.Subject;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.Principal;
@@ -32,19 +34,20 @@ public class FuzzrBoxAuthZTest {
     private AuthorizationManager authzM;
 
 
+    @BeforeClass
+    public static void init() throws IOException {
+        testVals = new Properties();
+        InputStream is = new FileInputStream(
+                System.getProperty("user.home") + "/.krbTests/TVals.props");
+        testVals.load(is);
+    }
+
     @Before
-    public void setup() throws IOException {
+    public void setup()  {
         SecurityFactory.prepare();
 
         //Without this simple tests don't work...
         System.setProperty("jboss.security.disable.secdomain.option","true");
-
-
-        testVals = new Properties();
-        InputStream is = new FileInputStream(
-                System.getProperty("user.home") +
-                        "/.krbTests/TVals.props");
-        testVals.load(is);
 
 
         idtrustConfig = new PicketBoxConfiguration();
