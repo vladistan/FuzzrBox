@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module xmlns="urn:jboss:module:1.1" name="com.dblfuzzr.jboss.auth.spi" >
+    <resources>
+        <resource-root path="fuzzrbox-0.0.1.jar"/>
+    </resources>
+</module>
