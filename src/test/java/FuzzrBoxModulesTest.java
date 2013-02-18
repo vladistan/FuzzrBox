@@ -1,9 +1,7 @@
 /**
- * Created with IntelliJ IDEA.
  * User: vlad
  * Date: 2/16/13
  * Time: 11:20 AM
- * To change this template use File | Settings | File Templates.
  */
 
 
@@ -142,6 +140,24 @@ public class FuzzrBoxModulesTest {
 
     }
 
+    @Test
+    public void KerberosAuthNwoRealm () throws LoginException {
+
+        String samaccount = testVals.get("samaccount").toString();
+
+
+        UsernamePasswordHandler handler = new UsernamePasswordHandler(samaccount, testVals.get("pass"));
+        LoginContext lc = new LoginContext("KerberosLoginModule", handler);
+        lc.login();
+
+        Set<Principal> principals = lc.getSubject().getPrincipals();
+
+        String realm = testVals.getProperty("domain");
+        KerberosPrincipal principal = new KerberosPrincipal(samaccount + "@" + realm);
+        assertTrue("Principals contains sam account", principals.contains(principal));
+
+        lc.logout();
+    }
 
     @Test
     public void KerberosAuthN () throws LoginException {
@@ -204,7 +220,7 @@ public class FuzzrBoxModulesTest {
     @Test
     public void DebugAuthN () throws LoginException {
 
-        String samaccount = testVals.get("user").toString();
+        String samaccount = testVals.get("samaccount").toString();
 
 
         UsernamePasswordHandler handler = new UsernamePasswordHandler(samaccount, testVals.get("pass"));
