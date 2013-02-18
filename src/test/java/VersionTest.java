@@ -13,7 +13,7 @@ import static junit.framework.Assert.assertEquals;
 public class VersionTest {
 
          @Test
-         public void Fields()
+         public void StaticFields()
          {
 
              assertEquals("Copyright (c) DblFuzzr,LLC 2013",VersionInfo.VersionCopyright);
@@ -21,6 +21,16 @@ public class VersionTest {
              assertEquals("Java Classes For Fuzzrbox",VersionInfo.VersionFileDesc);
 
          }
+
+         @Test
+         public void Attributes()
+         {
+             VersionInfo v = new VersionInfo();
+             assertEquals("Copyright (c) DblFuzzr,LLC 2013",v.VersionCopyright);
+
+         }
+
+
 
 
 }
