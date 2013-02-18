@@ -220,7 +220,7 @@ public class FuzzrBoxModulesTest {
     @Test
     public void DebugAuthN () throws LoginException {
 
-        String samaccount = testVals.get("user").toString();
+        String samaccount = testVals.get("samaccount").toString();
 
 
         UsernamePasswordHandler handler = new UsernamePasswordHandler(samaccount, testVals.get("pass"));
