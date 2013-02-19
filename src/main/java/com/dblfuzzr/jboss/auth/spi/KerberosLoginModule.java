@@ -75,7 +75,7 @@ public class KerberosLoginModule extends CommonLoginModule {
         String realm = (String) options.get("realm");
         if (realm != null) {
             log.trace("Setting Kerberos Realm to =" + realm);
-            System.setProperty("java.security.krb5.kdc", realm);
+            System.setProperty("java.security.krb5.kdc", kdc);
             System.setProperty("java.security.krb5.realm", realm);
         }
 
