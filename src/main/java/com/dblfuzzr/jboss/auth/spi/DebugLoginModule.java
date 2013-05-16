@@ -1,22 +1,16 @@
 package com.dblfuzzr.jboss.auth.spi;
 
-import org.hornetq.spi.core.security.JAASSecurityManager;
-import org.jboss.logging.Logger;
 import org.jboss.security.SimpleGroup;
 import org.jboss.security.SimplePrincipal;
 import org.jboss.security.auth.spi.AbstractServerLoginModule;
 
-import javax.security.auth.Subject;
-import javax.security.auth.callback.CallbackHandler;
 import javax.security.auth.callback.NameCallback;
-import javax.security.auth.callback.PasswordCallback;
 import javax.security.auth.callback.UnsupportedCallbackException;
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
 import java.security.Principal;
 import java.security.acl.Group;
 import java.util.ArrayList;
-import java.util.Map;
 
 
 public class DebugLoginModule extends AbstractServerLoginModule {
